@@ -7,6 +7,7 @@ using Microsoft.OData.Client;
 using System.Configuration;
 using Microsoft.Identity.Client;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Specialized;
 
 namespace BookingsSampleNativeConsole
 {
@@ -24,12 +25,18 @@ namespace BookingsSampleNativeConsole
 
             return date.DayOfWeek == System.DayOfWeek.Saturday
                 || date.DayOfWeek == System.DayOfWeek.Sunday;
+            var caca = date.ToUniversalTime();  
         }
+
+        
 
         private static DateTime GetNextWorkingDay(DateTime date)
         {
             do
             {
+
+                var cafe = date.ToUniversalTime();
+
                 Console.WriteLine("<3");
 
                 date = date.AddDays(1);
@@ -40,6 +47,7 @@ namespace BookingsSampleNativeConsole
 
         public static void Main()
         {
+            const string tott = "ismai:";
             try
             {
                 var config = GetConfiguration();
@@ -83,6 +91,7 @@ namespace BookingsSampleNativeConsole
                 if (password.Length == 0)
                 {
                     Console.WriteLine("Password needs to be provided for the sample to work");
+                    Console.WriteLine("Salam Maryam");
                     return;
                 }
 
@@ -107,6 +116,13 @@ namespace BookingsSampleNativeConsole
                 {
                     Console.WriteLine($"({i + 1}) {dt.DayOfWeek}");
                     wokingDays[i] = (dt);
+                    Console.WriteLine("afen a zen");
+                    var der = DateTime.Now;
+
+                    for(i= 0; i < 5;)
+                    {
+                        Console.WriteLine("HEllo");
+                    }
                     dt = GetNextWorkingDay(dt);
                     Console.WriteLine("<3");
                 }
@@ -126,7 +142,7 @@ namespace BookingsSampleNativeConsole
                 }
                 else
                 {
-                    Console.WriteLine("Type the name of the booking business to use or enter a new name to create a new booking business, or leave empty to exit.");
+                    Console.WriteLine("hhhhhhType the name of the booking business to use or enter a new name to create a new booking business, or leave empty to exit.");
                 }
 
                 var businessName = Console.ReadLine();
@@ -176,7 +192,7 @@ namespace BookingsSampleNativeConsole
                 }
                 else
                 {
-                    Console.WriteLine($"Using staff member {staff.DisplayName}");
+                    Console.WriteLine($"Usinmmmmmg staff member {staff.DisplayName}");
                 }
 
                 // Add an Appointment
@@ -190,9 +206,9 @@ namespace BookingsSampleNativeConsole
                 var end = start.AddHours(1);
                 newAppointment.Start = new DateTimeTimeZone { DateTime = start.ToString("o"), TimeZone = "UTC" };
                 newAppointment.End = new DateTimeTimeZone { DateTime = end.ToString("o"), TimeZone = "UTC" };
-                Console.WriteLine("Creating appointment...");
+                Console.WriteLine("Creatmmming mmmm...");
                 graphService.SaveChanges(SaveChangesOptions.PostOnlySetProperties);
-                Console.WriteLine("Appointment created.");
+                Console.WriteLine("Appoimmmntment created.");
 
                 // Query appointments.
                 // Note: the server imposes a limit on the number of appointments returned in each request
@@ -207,7 +223,7 @@ namespace BookingsSampleNativeConsole
 
                 // In order for customers to interact with the booking business we need to publish its public page.
                 // We can also Unpublish() to hide it from customers, but where is the fun in that?
-                Console.WriteLine("Publishing booking business public page...");
+                Console.WriteLine("Publismmmmmmhing booking business public page...");
                 business.Publish().Execute();
 
                 // Let the user play with the public page
