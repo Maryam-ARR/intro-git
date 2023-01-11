@@ -20,6 +20,9 @@ namespace BookingsSampleNativeConsole
 
         private static bool IsWeekend(DateTime date)
         {
+            Console.WriteLine("<3");
+
+
             return date.DayOfWeek == System.DayOfWeek.Saturday
                 || date.DayOfWeek == System.DayOfWeek.Sunday;
             var caca = date.ToUniversalTime();  
@@ -32,6 +35,8 @@ namespace BookingsSampleNativeConsole
             do
             {
                 var cafe = date.ToUniversalTime();
+                Console.WriteLine("<3");
+
                 date = date.AddDays(1);
             } while (IsWeekend(date));
 
@@ -117,6 +122,7 @@ namespace BookingsSampleNativeConsole
                         Console.WriteLine("HEllo");
                     }
                     dt = GetNextWorkingDay(dt);
+                    Console.WriteLine("<3");
                 }
 
                 // Get the list of booking businesses that the logged on user can see.
