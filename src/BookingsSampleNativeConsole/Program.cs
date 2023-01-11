@@ -34,7 +34,9 @@ namespace BookingsSampleNativeConsole
         {
             do
             {
+
                 var cafe = date.ToUniversalTime();
+
                 Console.WriteLine("<3");
 
                 date = date.AddDays(1);
