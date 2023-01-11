@@ -17,6 +17,22 @@ namespace BookingsSampleNativeConsole
         private static string clientApplicationAppId;
         private static string tenantId;
 
+        private static bool IsWeekend(DateTime date)
+        {
+            return date.DayOfWeek == System.DayOfWeek.Saturday
+                || date.DayOfWeek == System.DayOfWeek.Sunday;
+        }
+
+        private static DateTime GetNextWorkingDay(DateTime date)
+        {
+            do
+            {
+                date = date.AddDays(1);
+            } while (IsWeekend(date));
+
+            return date;
+        }
+
         public static void Main()
         {
             try
@@ -77,6 +93,16 @@ namespace BookingsSampleNativeConsole
                 if (System.Diagnostics.Process.GetProcessesByName("fiddler").Any())
                 {
                     graphService.WebProxy = new WebProxy(new Uri("http://localhost:8888"), false);
+                }
+
+                DateTime[] wokingDays = new DateTime[5];
+                var dt = GetNextWorkingDay(DateTime.Now.Date);
+
+                for (int i = 0; i < 5; i++)
+                {
+                    Console.WriteLine($"({i + 1}) {dt.DayOfWeek}");
+                    wokingDays[i] = (dt);
+                    dt = GetNextWorkingDay(dt);
                 }
 
                 // Get the list of booking businesses that the logged on user can see.
